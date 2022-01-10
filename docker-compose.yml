@@ -1,0 +1,19 @@
+version: '3'
+
+# docker volume create --name=pgdata
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: postgres
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+
+volumes:
+  pgdata:
+    external: true
